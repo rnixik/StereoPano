@@ -1,0 +1,29 @@
+{
+	"FileVersion" : 3,
+	"Version" : 1,
+	"VersionName" : "Alpha",
+	"FriendlyName" : "Stereo Panoramic Capture",
+	"Description" : "A plugin to capture panoramic images",
+	"Category" : "Recording",
+	"CreatedBy" : "Kite & Lightning, Roman Nix",
+	"CreatedByURL" : "http://kiteandlightning.la/",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"EnabledByDefault" : false,
+	"CanContainContent" : false,
+	"IsBetaVersion" : false,
+	"Installed" : false,
+	"Modules" :
+	[
+		{
+			"Name" : "StereoPano",
+			"Type" : "RuntimeNoCommandlet",
+			"LoadingPhase" : "Default",
+			"WhitelistPlatforms" :
+			[
+				"Win64"
+			]
+		}
+	]
+}
