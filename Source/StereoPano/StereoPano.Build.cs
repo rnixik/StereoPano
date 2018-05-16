@@ -1,16 +1,16 @@
 // Copyright 2015 Kite & Lightning.  All rights reserved.
 
+using UnrealBuildTool;
+
 namespace UnrealBuildTool.Rules
 {
 	public class StereoPano : ModuleRules
 	{
-		public StereoPano( TargetInfo Target )
+		public StereoPano(ReadOnlyTargetRules Target) : base(Target)
 		{
-			PrivateIncludePaths.AddRange(
-				new string[] {
-					"Runtime/StereoPano/Private",
-				}
-			);
+			PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+			PrivateIncludePaths.Add("Runtime/StereoPano/Private");
 
 			PrivateDependencyModuleNames.AddRange(
 				new string[] {
