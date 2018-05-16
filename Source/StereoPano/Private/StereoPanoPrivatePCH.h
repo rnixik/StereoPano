@@ -2,9 +2,9 @@
 
 #include "Engine.h"
 #include "ModuleManager.h"
-#include "ImageWrapper.h"
 #include "Tickable.h"
-
+#include "Runtime/ImageWrapper/Public/IImageWrapper.h"
+#include "Runtime/ImageWrapper/Public/IImageWrapperModule.h"
 #include "StereoPanoManager.h"
 #include "StereoPano.h"
 #include "SceneCapturer.h"

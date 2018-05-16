@@ -1,5 +1,6 @@
 // Copyright 2015 Kite & Lightning.  All rights reserved.
 
+#include "SceneCapturer.h"
 #include "StereoPanoPrivatePCH.h"
 
 DEFINE_LOG_CATEGORY( LogStereoPano );
@@ -666,9 +667,14 @@ TArray<FColor> USceneCapturer::SaveAtlas(FString Folder, const TArray<FColor>& S
 
 	UE_LOG( LogStereoPano, Log, TEXT( "Writing atlas: %s" ), *AtlasName );
 
+	IImageWrapperModule* ImageWrapperModule = FModuleManager::LoadModulePtr<IImageWrapperModule>("ImageWrapper");
+	ensure(ImageWrapperModule != nullptr);
+	TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule->CreateImageWrapper( EImageFormat::PNG );
+
+
+
 	// Write out PNG
     //TODO: ikrimae: Use threads to write out the images for performance
-	IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper( EImageFormat::PNG );
     ImageWrapper->SetRaw(SphericalAtlas.GetData(), SphericalAtlas.GetAllocatedSize(), SphericalAtlasWidth, SphericalAtlasHeight, ERGBFormat::BGRA, 8);
 	const TArray<uint8>& PNGData = ImageWrapper->GetCompressed(100);
 	FFileHelper::SaveArrayToFile( PNGData, *AtlasName );
@@ -726,7 +732,9 @@ void USceneCapturer::CaptureComponent( int32 CurrentHorizontalStep, int32 Curren
         if (FStereoPanoManager::GenerateDebugImages->GetInt() == 2)
         {
             //Read Whole Capture Buffer
-		    IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper( EImageFormat::PNG );
+			IImageWrapperModule* ImageWrapperModule = FModuleManager::LoadModulePtr<IImageWrapperModule>("ImageWrapper");
+			ensure(ImageWrapperModule != nullptr);
+			TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule->CreateImageWrapper(EImageFormat::PNG);
 
             TArray<FColor> SurfaceDataWhole;
             SurfaceDataWhole.AddUninitialized(CaptureWidth * CaptureHeight);
@@ -759,7 +767,10 @@ void USceneCapturer::CaptureComponent( int32 CurrentHorizontalStep, int32 Curren
                 }
             }
 
-            IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+			IImageWrapperModule* ImageWrapperModule = FModuleManager::LoadModulePtr<IImageWrapperModule>("ImageWrapper");
+			ensure(ImageWrapperModule != nullptr);
+			TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule->CreateImageWrapper(EImageFormat::PNG);
+
             ImageWrapper->SetRaw(SurfaceData.GetData(), SurfaceData.GetAllocatedSize(), StripWidth, StripHeight, ERGBFormat::BGRA, 8);
 		    const TArray<uint8>& PNGData = ImageWrapper->GetCompressed(100);
 

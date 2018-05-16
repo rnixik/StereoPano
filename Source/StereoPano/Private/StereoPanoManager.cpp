@@ -1,5 +1,6 @@
 // Copyright 2015 Kite & Lightning.  All rights reserved.
 
+#include "StereoPanoManager.h"
 #include "StereoPanoPrivatePCH.h"
 
 

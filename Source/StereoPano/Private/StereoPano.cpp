@@ -1,5 +1,6 @@
 // Copyright 2015 Kite & Lightning.  All rights reserved.
 
+#include "StereoPano.h"
 #include "StereoPanoPrivatePCH.h"
 
 TSharedPtr<FStereoPanoManager> StereoPanoManager;

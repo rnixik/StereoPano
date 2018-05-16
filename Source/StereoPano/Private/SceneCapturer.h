@@ -4,6 +4,7 @@
 
 #include "SceneCapturer.generated.h"
 
+
 DECLARE_LOG_CATEGORY_EXTERN( LogStereoPano, Log, All );
 
 DECLARE_STATS_GROUP( TEXT( "SP" ), STATGROUP_SP, STATCAT_Advanced );
@@ -98,7 +99,7 @@ public:
     int32 StripHeight;
 
 	class APlayerController* CapturePlayerController;
-	class AGameMode* CaptureGameMode;
+	class AGameModeBase* CaptureGameMode;
 
 	TArray<USceneCaptureComponent2D*> LeftEyeCaptureComponents;
 	TArray<USceneCaptureComponent2D*> RightEyeCaptureComponents;
